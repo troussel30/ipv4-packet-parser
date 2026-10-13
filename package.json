@@ -1,6 +1,6 @@
 {
   "name": "ipv4-packet-parser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Decodes an IPv4 datagram buffer into version, IHL, total length, protocol, addresses, options, and payload offset.",
   "type": "module",
   "main": "src/index.js",
