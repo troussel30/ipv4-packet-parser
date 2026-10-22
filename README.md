@@ -53,3 +53,10 @@ Options are returned as a list of 32-bit big-endian integers because IPv4 option
 ## Awkward edges
 
 The parser is strict about what it will decode. A buffer shorter than 20 bytes, a version byte that is not `4`, an IHL below 5 or above 15, or a header length that exceeds the buffer all yield `INVALID_PARSE` rather than a partial result. The protocol-name table is intentionally small; any protocol number not in `PROTOCOL_NUMBERS` is reported as `"unknown"` rather than guessed.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
